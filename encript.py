@@ -1,17 +1,14 @@
-import string
 import os
 
-letters = string.ascii_letters
+letters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ !#$%&'()*+,-./:;<=>?@[]^_`{|}~" + '"' + "əƏöÖüÜıIğĞçÇşŞ"
+
 
 def encode(surf, file_name, *content):
     secure_content = []
     
     for i in content:
-        if i == ' ':
-            secure_content.append(' ')
-        else:
-            ind = letters.find(i)-surf
-            secure_content.append(letters[ind])
+        ind = letters.find(i)-surf
+        secure_content.append(letters[ind])
         
     with open(file_name, "w") as file:
         file.write("".join(secure_content))
@@ -24,13 +21,10 @@ def decode(surf, file_name):
     content = []
     
     for i in secure_content:
-        if i == ' ':
-            content.append(' ')
-        else:
-            ind = letters.find(i)+surf
-            if ind > 51:
-                ind = ind-52
-            content.append(letters[ind])
+        ind = letters.find(i)+surf
+        if ind > len(letters)-1:
+            ind = ind-len(letters)
+        content.append(letters[ind])
         
     return "".join(content)
 

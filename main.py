@@ -20,7 +20,7 @@ while True:
     if answer == 'E':
         content = input("Write the text: ")
         file_name = input("Write the file name: ")+'.txt'
-        code = int(input("Write the code: "))
+        code = int(input("Write the code (100-999): "))
         encode(code, file_name, all_keys, *content)
         print('\n')
     elif answer == 'D':
@@ -32,6 +32,7 @@ while True:
         ]
         file_name = inquirer.prompt(options)['opt']
         code = int(input("Write the code: "))
+        print('\n')
         print(decode(code, all_keys, file_name))
         print('\n')
     elif answer == 'Q':

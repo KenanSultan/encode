@@ -20,8 +20,19 @@ while True:
     if answer == 'E':
         content = input("Write the text: ")
         file_name = input("Write the file name: ")+'.txt'
-        code = int(input("Write the code (100-999): "))
-        encode(code, file_name, all_keys, *content)
+        while True:
+            control = True
+            code = input("Write the code (100-999): ")
+            for i in code:
+                if i not in digits:
+                    control = False
+                    break   
+            if len(code) != 3 or control == False:
+                print("Code must be an integer between 100-999")
+                continue
+            else:
+                break         
+        encode(int(code), file_name, all_keys, *content)
         print('\n')
     elif answer == 'D':
         options = [
@@ -31,7 +42,18 @@ while True:
             ),
         ]
         file_name = inquirer.prompt(options)['opt']
-        code = int(input("Write the code: "))
+        while True:
+            control = True
+            code = input("Write the code (100-999): ")
+            for i in code:
+                if i not in digits:
+                    control = False
+                    break   
+            if len(code) != 3 or control == False:
+                print("Code must be an integer between 100-999")
+                continue
+            else:
+                break
         print('\n')
         print(decode(code, all_keys, file_name))
         print('\n')
